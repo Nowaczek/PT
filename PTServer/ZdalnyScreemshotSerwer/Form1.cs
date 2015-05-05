@@ -184,28 +184,7 @@ namespace ZdalnyScreemshotSerwer
             }
         }
 
-        private void processkill()
-        {
-            try
-            {
-                string adresIP = String.Empty;
-
-                foreach (user u in listuser)
-                {
-                    if (u.imienazwisko == listBox1.Items[listBox1.SelectedIndex].ToString())
-                        adresIP = u.adres;
-                }
-
-                TcpClient klient = new TcpClient(adresIP, 1978);
-                NetworkStream ns = klient.GetStream();
-                byte[] bufor = new byte[100];
-                bufor = Encoding.ASCII.GetBytes("##PB##" + listBox2.Items[listBox2.SelectedIndex].ToString() + "##END##");
-                ns.Write(bufor, 0, bufor.Length);
-            }
-            catch
-            {
-            }
-        }
+       
 
         private void proces()
         {

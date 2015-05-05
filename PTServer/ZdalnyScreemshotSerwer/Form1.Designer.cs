@@ -43,7 +43,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.button13 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.l_stan = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
@@ -171,7 +170,6 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.button13);
             this.tabPage5.Controls.Add(this.button10);
             this.tabPage5.Controls.Add(this.listBox2);
             this.tabPage5.Controls.Add(this.button5);
@@ -182,20 +180,9 @@
             this.tabPage5.Text = "Przegląd uruchomionych programów";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(174, 8);
-            this.button13.Margin = new System.Windows.Forms.Padding(2);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(167, 23);
-            this.button13.TabIndex = 15;
-            this.button13.Text = "wyłącz";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(346, 8);
+            this.button10.Location = new System.Drawing.Point(175, 8);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(148, 23);
             this.button10.TabIndex = 14;
@@ -285,7 +272,6 @@
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label l_stan;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBox1;
