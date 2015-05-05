@@ -1,0 +1,9 @@
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\bin\Release\ZdalnyScreemshotSerwer.exe.config
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\bin\Release\ZdalnyScreemshotSerwer.exe
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\bin\Release\ZdalnyScreemshotSerwer.pdb
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.csprojResolveAssemblyReference.cache
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.Form1.resources
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.Properties.Resources.resources
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.csproj.GenerateResource.Cache
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.exe
+C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.pdb
