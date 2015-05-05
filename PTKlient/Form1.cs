@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Activity_Monitor_Client;
 
 namespace PTKlient
 {
@@ -20,6 +22,7 @@ namespace PTKlient
         IPAddress serverIP;
         int serverPort;
         int serwerKomendPort = 1978;
+        Bitmap obraz;
         public Form1()
         {
             InitializeComponent();
@@ -40,7 +43,7 @@ namespace PTKlient
             serverIP = IPAddress.Parse(textBoxserverIP.Text);
             serverPort = 10000;
 
-            WyslijWiadomoscUDP(localIP + ":LOGIN:" + "Piotr:" + "Nowak:" + "106");//+ tb_imie.Text + ":" + tb_nazwisko.Text + ":" + tb_index.Text);
+            WyslijWiadomoscUDP(localIP + ":LOGIN:" + "Nowaczek:" + "Nowaczek:" + "106");//+ tb_imie.Text + ":" + tb_nazwisko.Text + ":" + tb_index.Text);
 
             //notifyIcon1.Visible = true;
             //notifyIcon1.Text = "Program Minimalizujący";
@@ -81,7 +84,7 @@ namespace PTKlient
                     int odczyt = ns.Read(bufor, 0, bufor.Length);
                     String s = Encoding.ASCII.GetString(bufor);
                     string wiadomosc = Encoding.ASCII.GetString(bufor);
-                    /*
+                    
                     if (wiadomosc.Contains("##S##"))
                     {
                         //this.SetText("Zrzut ekranu w trakcie wykonywania ...");
@@ -92,7 +95,7 @@ namespace PTKlient
                         ms.Close();
                         try
                         {
-                            TcpClient klient2 = new TcpClient(serwerDanychIP.ToString(), serwerDanychPort);//
+                            TcpClient klient2 = new TcpClient(serverIP.ToString(), serverPort);//
                             NetworkStream ns2 = klient2.GetStream();
                             //this.SetText("Wysyłanie zrzutu ...");
                             using (BinaryWriter bw = new BinaryWriter(ns2))
@@ -102,11 +105,76 @@ namespace PTKlient
                             }
                             //this.SetText("Zrzut ekranu przesłany");
                         }
+                        catch { }
+                    }
 
-                    }*/
+                    if (wiadomosc.Contains("##P##"))
+                    {
+                        string[] proc = Processes.getProcesses();
+                        string wiadomoscudp = String.Empty;
+                        foreach (string p in proc)
+                        {
+                            wiadomoscudp += p + ";";
+                        }
+                        WyslijWiadomoscUDP(localIP + ":PROC:" + wiadomoscudp);
+                    }
+                    if (wiadomosc.Contains("##PB##"))
+                    {
+                        string name = wiadomosc + "#";
+                        name = wyciagnij(name, "##PB##", "##END##");
+
+                        foreach (var process in Process.GetProcessesByName(name))
+                        {
+                            process.Kill();
+                        }
+                    }
                     
                 }
                 catch { }
+            }
+        }
+
+        private Bitmap wykonajScreenshot()
+        {
+            Bitmap bitmapa = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
+            Graphics screenshot = Graphics.FromImage(bitmapa);
+            screenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
+            bitmapa = zmien(bitmapa, new Size(800, 450));
+            return bitmapa;
+        }
+
+
+        public Bitmap zmien(Bitmap imgToResize, Size size)
+        {
+            Bitmap bitmap = new Bitmap(size.Width, size.Height);
+            using (Graphics graphics = Graphics.FromImage((Image)bitmap))
+            {
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(imgToResize, 0, 0, size.Width, size.Height);
+            }
+            return bitmap;
+        }
+
+
+
+        public string wyciagnij(string source, string poczatek, string koniec)
+        {
+            try
+            {
+                string x;
+
+                int indexpoczatek = (source.IndexOf(poczatek)) + poczatek.Length;
+                x = source.Substring(indexpoczatek, source.Length - indexpoczatek);
+
+                int indexkoniec = x.IndexOf(koniec);
+
+                x = x.Substring(0, indexkoniec);
+
+                return x;
+            }
+            catch
+            {
+                return "0";
             }
         }
     }

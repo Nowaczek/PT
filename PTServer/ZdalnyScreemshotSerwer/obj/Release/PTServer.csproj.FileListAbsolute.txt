@@ -1,0 +1,3 @@
+D:\Programy\GitHub\PT\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\bin\Release\ZdalnyScreemshotSerwer.exe.config
+D:\Programy\GitHub\PT\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.exe
+D:\Programy\GitHub\PT\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.pdb

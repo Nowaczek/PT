@@ -1,0 +1,9 @@
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\bin\Debug\ZdalnyScreemshotSerwer.exe.config
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.exe
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.pdb
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\bin\Debug\ZdalnyScreemshotSerwer.exe
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\bin\Debug\ZdalnyScreemshotSerwer.pdb
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\PTServer.csprojResolveAssemblyReference.cache
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.Form1.resources
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.Properties.Resources.resources
+D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\PTServer.csproj.GenerateResource.Cache
