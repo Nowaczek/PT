@@ -7,3 +7,6 @@ C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Relea
 C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.csproj.GenerateResource.Cache
 C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.exe
 C:\Users\Michał\Desktop\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.pdb
+D:\Programy\GitHub\PT\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\bin\Release\ZdalnyScreemshotSerwer.exe.config
+D:\Programy\GitHub\PT\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.exe
+D:\Programy\GitHub\PT\ZdalnyScreemshotSerwer\ZdalnyScreemshotSerwer\obj\Release\ZdalnyScreemshotSerwer.pdb
