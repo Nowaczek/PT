@@ -7,3 +7,10 @@ D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\PTServer.csprojR
 D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.Form1.resources
 D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.Properties.Resources.resources
 D:\Programy\GitHub\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\PTServer.csproj.GenerateResource.Cache
+D:\Dokumenty Prezes\APP\PT\PT\PTServer\ZdalnyScreemshotSerwer\bin\Debug\ZdalnyScreemshotSerwer.exe.config
+D:\Dokumenty Prezes\APP\PT\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.exe
+D:\Dokumenty Prezes\APP\PT\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.pdb
+D:\Dokumenty Prezes\APP\PT\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\PTServer.csprojResolveAssemblyReference.cache
+D:\Dokumenty Prezes\APP\PT\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.Form1.resources
+D:\Dokumenty Prezes\APP\PT\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\ZdalnyScreemshotSerwer.Properties.Resources.resources
+D:\Dokumenty Prezes\APP\PT\PT\PTServer\ZdalnyScreemshotSerwer\obj\Debug\PTServer.csproj.GenerateResource.Cache

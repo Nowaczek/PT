@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 namespace ZdalnyScreemshotSerwer
 {
@@ -19,6 +20,12 @@ namespace ZdalnyScreemshotSerwer
         {
             InitializeComponent();
 
+            button1.Enabled = false;
+            button5.Enabled = false;
+            button10.Enabled = false;
+
+
+            
             IPHostEntry adresIP = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var s in adresIP.AddressList)
             {
@@ -28,7 +35,7 @@ namespace ZdalnyScreemshotSerwer
                     comboBox1.Items.Add(s.ToString());
                 }
             }
-            comboBox1.Items.Add("127.0.0.1");
+            //comboBox1.Items.Add("127.0.0.1");
         }
 
        
@@ -79,6 +86,10 @@ namespace ZdalnyScreemshotSerwer
 
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
+
+
+
+
             IPEndPoint zdalnyIP = new IPEndPoint(IPAddress.Any, 0);
             UdpClient klient = new UdpClient(43210);
             while (true)
@@ -149,72 +160,128 @@ namespace ZdalnyScreemshotSerwer
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+       private  string adresIP = "none";
+
+        private void takeaddress()
         {
-            timer1.Start();
-            label1.Text = "podgląd włączony";
+            try
+            {
+                foreach (user u in listuser)
+                {
+                    if (u.imienazwisko == listBox1.Items[listBox1.SelectedIndex].ToString())
+                        adresIP = u.adres;
+                }
+            }
+            catch
+            {
+                adresIP = "none";
+            }
+
 
         }
+        private bool podglad = false;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            takeaddress();
+
+
+            if (podglad == false)
+            {
+
+                if (adresIP == "none")
+                {
+                    MessageBox.Show("Nie wybrałeś użytkownika");
+                }
+                else
+                {
+                    timer1.Start();
+                    label1.Text = "podgląd włączony";
+                    adresIP = "none";
+                }
+
+            }
+            else
+            {
+                timer1.Stop();
+                label1.Text = "podgląd wyłączony";
+                adresIP = "none";
+                
+            }
+
+
+    }
 
         private void print()
         {
             try
             {
-                string adresIP = String.Empty;
+                
                
-                    foreach (user u in listuser)
-                    {
-                        if (u.imienazwisko == listBox1.Items[listBox1.SelectedIndex].ToString())
-                            adresIP = u.adres;
-                    }
+                   
+               
 
-                TcpClient klient = new TcpClient(adresIP, 1978);
-                NetworkStream ns = klient.GetStream();
-                byte[] bufor = new byte[5];
-                bufor = Encoding.ASCII.GetBytes("##S##");
-                ns.Write(bufor, 0, bufor.Length);
-                if (backgroundWorker1.IsBusy == false)
-                    backgroundWorker1.RunWorkerAsync();
+                
+                
+
+                    TcpClient klient = new TcpClient(adresIP, 1978);
+                    NetworkStream ns = klient.GetStream();
+                    byte[] bufor = new byte[5];
+                    bufor = Encoding.ASCII.GetBytes("##S##");
+                    ns.Write(bufor, 0, bufor.Length);
+                    if (backgroundWorker1.IsBusy == false)
+                        backgroundWorker1.RunWorkerAsync();
+                
                 /*else
                    MessageBox.Show("Nie mozna teraz zrealizowac zrzutu ekranu");*/
             }
             catch
             {
-                //MessageBox.Show("Blad: nie mozna nawiazac polaczenia.");
+                //MessageBox.Show("Nie zaznaczyłeś użytkownika");
             }
         }
 
-       
+
 
         private void proces()
         {
-            try
+
+            string adresIPp = "none";
+
+            foreach (user u in listuser)
             {
-                string adresIP = String.Empty;
-                if (listBox1.Items[listBox1.SelectedIndex].ToString().Contains("."))
-                    adresIP = listBox1.Items[listBox1.SelectedIndex].ToString();
-                else
-                {
-                    foreach (user u in listuser)
-                    {
-                        if (u.imienazwisko == listBox1.Items[listBox1.SelectedIndex].ToString())
-                            adresIP = u.adres;
-                    }
-                }
-                TcpClient klient = new TcpClient(adresIP, 1978);
-                NetworkStream ns = klient.GetStream();
-                byte[] bufor = new byte[5];
-                bufor = Encoding.ASCII.GetBytes("##P##");
-                ns.Write(bufor, 0, bufor.Length);
-                timer2.Start();
+                if (u.imienazwisko == listBox1.Items[listBox1.SelectedIndex].ToString())
+                    adresIPp = u.adres;
             }
-            catch
+
+            if (adresIPp == "none")
             {
-                //MessageBox.Show("Blad: nie mozna nawiazac polaczenia.");
+                MessageBox.Show("Nie wybrałeś użytkownika");
+            }
+            else
+            {
+
+
+                try
+                {
+
+                    TcpClient klient = new TcpClient(adresIPp, 1978);
+                    NetworkStream ns = klient.GetStream();
+                    byte[] bufor = new byte[5];
+                    bufor = Encoding.ASCII.GetBytes("##P##");
+                    ns.Write(bufor, 0, bufor.Length);
+                    timer2.Start();
+                }
+                catch
+                {
+                    // MessageBox.Show("Nie zaznaczyłeś użytkownika");
+                }
             }
         }
 
-        
+
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -275,11 +342,7 @@ namespace ZdalnyScreemshotSerwer
 
        
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            label1.Text = "podgląd wyłączony";
-        }
+       
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -291,14 +354,63 @@ namespace ZdalnyScreemshotSerwer
 
         }
 
+        private bool ifon = false;
+
         private void button3_Click_1(object sender, EventArgs e)
         {
-            ip = comboBox1.SelectedItem.ToString();
-            backgroundWorker2.RunWorkerAsync();
-            /*IPHostEntry adresIP = Dns.GetHostEntry(Dns.GetHostName());
-            textBox1.Text = adresIP.AddressList[1].ToString();*/
-            l_stan.Text = "Serwer włączony";
+            if (ifon == false)
+            {
+                try
+                {
+                    ip = comboBox1.SelectedItem.ToString();
+                    backgroundWorker2.RunWorkerAsync();
+                   
+                    l_stan.Text = "Serwer włączony";
+                    button1.Enabled = true;
+                    button5.Enabled = true;
+                    button10.Enabled = true;
+
+                    ifon = true;
+                }
+                catch
+                {
+                    System.Windows.Forms.MessageBox.Show("Wybierz adres IP serwera");
+                }
+            }
+            else
+            {
+                if (backgroundWorker2.IsBusy)
+                {
+//TO trzeba ogarnac!
+                    
+                   backgroundWorker2.CancelAsync();
+                }
+                try
+                {
+                    timer1.Stop();
+                    
+                }
+                catch
+                {
+
+                } try
+                {
+                    
+                    timer2.Stop();
+                }
+                catch
+                {
+
+                }
+                l_stan.Text = "Serwer wyłączony";
+                button1.Enabled = false;
+                button5.Enabled = false;
+                button10.Enabled = false;
+                ifon = false;
+
+            }
             
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,12 +431,7 @@ namespace ZdalnyScreemshotSerwer
             listBox2.Items.Clear();
         }
 
-        private void button13_Click(object sender, EventArgs e)
-        {
-            processkill();
-            delay(1);
-            proces();
-        }
+       
 
         public void delay(int sekundy)
         {
@@ -345,6 +452,11 @@ namespace ZdalnyScreemshotSerwer
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
