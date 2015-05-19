@@ -1,0 +1,9 @@
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\bin\Debug\PTSerwer.exe.config
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\obj\Debug\PTSerwer.csprojResolveAssemblyReference.cache
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\obj\Debug\PTSerwer.Form1.resources
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\obj\Debug\PTSerwer.Properties.Resources.resources
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\obj\Debug\PTSerwer.csproj.GenerateResource.Cache
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\bin\Debug\PTSerwer.exe
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\bin\Debug\PTSerwer.pdb
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\obj\Debug\PTSerwer.exe
+D:\Dokumenty Prezes\APP\PT\PT\PTSerwer\PTSerwer\PTSerwer\obj\Debug\PTSerwer.pdb
