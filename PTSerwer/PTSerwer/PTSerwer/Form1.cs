@@ -25,13 +25,15 @@ namespace PTSerwer
         }
 
 
-
+         List<string> listurl = new List<string>();
          List<user> listuser = new List<user>();
          List<string> listaStringow = new List<string>();
          public string ip;
          private string adresIP = "none";
          private bool podglad = false;
-         
+         private bool pobierzURL = false;
+         public string user;
+         public string urlblock;
        
         delegate void SetTextCallBack(string tekst);
         private void SetText(string tekst)
@@ -68,6 +70,9 @@ namespace PTSerwer
             button1.Enabled = false;
             button5.Enabled = false;
             button10.Enabled = false;
+            button13.Enabled = false;
+            button9.Enabled = false;
+            button11.Enabled = false;
             IPHostEntry adresIP = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var s in adresIP.AddressList)
             {
@@ -92,11 +97,19 @@ namespace PTSerwer
             }
             catch
             {
-                MessageBox.Show("take addres error");
+                
             }
 
 
         }
+
+         public void delay(int sekundy)
+         {
+             for (int i = 0; i < sekundy * 2000000; i++)
+             {
+                 Application.DoEvents(); // rekakcja na guzik
+             }
+         }
 
         private void print()
         {
@@ -167,6 +180,42 @@ namespace PTSerwer
                 {
                     // MessageBox.Show("Nie zaznaczyłeś użytkownika");
                 }
+            }
+        }
+
+        private void processkill()
+        {
+            try
+            {
+                string adresIP = String.Empty;
+
+                foreach (user u in listuser)
+                {
+                    if (u.imienazwisko == listBox1.Items[listBox1.SelectedIndex].ToString())
+                        adresIP = u.adres;
+                }
+
+                TcpClient klient = new TcpClient(adresIP, 1978);
+                NetworkStream ns = klient.GetStream();
+                byte[] bufor = new byte[100];
+                bufor = Encoding.ASCII.GetBytes("##PB##" + listBox2.Items[listBox2.SelectedIndex].ToString() + "##END##");
+                ns.Write(bufor, 0, bufor.Length);
+            }
+            catch
+            {
+            }
+        }
+
+        private void SetTextURL(string tekst)
+        {
+            if (listBox4.InvokeRequired)
+            {
+                SetTextCallBack f = new SetTextCallBack(SetTextURL);
+                this.Invoke(f, new object[] { tekst });
+            }
+            else
+            {
+                this.listBox4.Items.Add(tekst);
             }
         }
 
@@ -259,6 +308,67 @@ namespace PTSerwer
                         listaStringow.Add(proces);
                     }
                 }
+                if (cmd[1] == "STRING")
+                {
+                    MessageBox.Show("wiadomość od - " + cmd[0] + " - " + cmd[2]);
+                }
+                if (cmd[1] == "URL")
+                {
+
+                    if (pobierzURL)
+                    {
+                        string adresIP = String.Empty;
+                        string nick = String.Empty;
+
+                        foreach (user u in listuser)
+                        {
+                            if (u.adres == cmd[0])
+                            {
+                                nick = u.imienazwisko;
+                            }
+                        }
+                        try
+                        {
+
+                            DateTime saveNow = DateTime.Now;
+                            this.SetTextURL(saveNow + " - " + nick + " - " + cmd[2] + cmd[3]);
+
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+
+                    try
+                    {
+                        
+                        string url = cmd[2] + cmd[3];
+                        string name = String.Empty;
+
+                        foreach (string u in listurl)
+                        {
+                            if (url.Contains(u))
+                            {
+                                foreach (user osoba in listuser)
+                                {
+                                    if (osoba.adres == cmd[0])
+                                        name = osoba.imienazwisko;
+                                    else
+                                        name = cmd[0];
+                                }
+
+                                if (user != name )
+                                {
+                                    MessageBox.Show("Użytkownik - " + name + " korzysta z niedozwolonej strony " + cmd[2] + cmd[3], "Uwaga");
+                                    user = name;
+                                    
+                                }
+                            }
+                        }
+                    }
+                    catch { }
+                }
 
 
 
@@ -279,6 +389,9 @@ namespace PTSerwer
                     button5.Enabled = true;
                     button10.Enabled = true;
                     Serwer_on.Enabled = false;
+                    button13.Enabled = true;
+                    button9.Enabled = true;
+                    button11.Enabled = true;
 
                 }
                 catch
@@ -351,10 +464,55 @@ namespace PTSerwer
         {
             listBox2.Items.Clear();
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        
+        private void button9_Click(object sender, EventArgs e)
         {
+            if (pobierzURL == false)
+            {
+                pobierzURL = true;
+                button9.Text = "Zakończ podgląd";
+            }
+            else
+            {
+                pobierzURL = false;
+                button9.Text = "Rozpocznij podgląd";
+            }
 
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            listBox4.Items.Clear();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            listurl.Add(tb_www.Text);
+            listBox3.Items.Add(tb_www.Text);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            foreach (string u in listurl)
+            {
+                if (u == listBox3.SelectedItem.ToString())
+                {
+                    listurl.Remove(listBox3.SelectedItem.ToString());
+                    break;
+                }
+            }
+
+            listBox3.Items.RemoveAt(listBox3.SelectedIndex);
+
+
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            processkill();
+            delay(1);
+            proces();
         }
 
         
