@@ -3,7 +3,6 @@ D:\Programy\GitHub\PT\PTKlient\bin\Debug\PTKlient.exe.config
 D:\Programy\GitHub\PT\PTKlient\bin\Debug\PTKlient.exe
 D:\Programy\GitHub\PT\PTKlient\bin\Debug\PTKlient.pdb
 D:\Programy\GitHub\PT\PTKlient\obj\Debug\PTKlient.csprojResolveAssemblyReference.cache
-D:\Programy\GitHub\PT\PTKlient\obj\Debug\PTKlient.Form1.resources
 D:\Programy\GitHub\PT\PTKlient\obj\Debug\PTKlient.Properties.Resources.resources
 D:\Programy\GitHub\PT\PTKlient\obj\Debug\PTKlient.csproj.GenerateResource.Cache
 D:\Programy\GitHub\PT\PTKlient\obj\Debug\PTKlient.exe
@@ -11,3 +10,4 @@ D:\Programy\GitHub\PT\PTKlient\obj\Debug\PTKlient.pdb
 D:\Dokumenty Prezes\APP\PT\PT\PTKlient\bin\Debug\PTKlient.exe.config
 D:\Dokumenty Prezes\APP\PT\PT\PTKlient\obj\Debug\PTKlient.exe
 D:\Dokumenty Prezes\APP\PT\PT\PTKlient\obj\Debug\PTKlient.pdb
+D:\Programy\GitHub\PT\PTKlient\obj\Debug\PTKlient.PTKlient.resources

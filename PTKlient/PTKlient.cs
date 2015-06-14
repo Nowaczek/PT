@@ -12,14 +12,14 @@ using Activity_Monitor_Client;
 
 namespace PTKlient
 {
-    public partial class Form1 : Form
+    public partial class PTKlient : Form
     {
         string localIP;
         IPAddress serverIP;
         int serverPort;
         int serwerKomendPort = 1978;
         Bitmap obraz;
-        public Form1()
+        public PTKlient()
         {
             InitializeComponent();
             IPHostEntry adresIP = Dns.GetHostEntry(Dns.GetHostName());
@@ -40,7 +40,8 @@ namespace PTKlient
             serverPort = 10000;
 
             sendUDP(localIP + ":LOGIN:" + "Nowaczek:" + "Nowaczek:" + "106");
-           
+
+            backgroundWorker1.WorkerSupportsCancellation = true;
             backgroundWorker1.RunWorkerAsync();
         }
 
@@ -126,6 +127,20 @@ namespace PTKlient
                 graphics.DrawImage(imgToResize, 0, 0, size.Width, size.Height);
             }
             return bitmap;
+        }
+        private void buttonRozlacz_Click(object sender, EventArgs e)
+        {
+            sendUDP(localIP + ":BYE:");
+            backgroundWorker1.CancelAsync();
         } 
+        private void buttonWyslijWiadomosc_Click(object sender, EventArgs e)
+        {
+            if (textBoxWiadomosc.Text == "")
+            {
+                MessageBox.Show("Nie wpisano wiadomości");
+                return;
+            }
+            sendUDP(localIP + ":STRING:" + textBoxWiadomosc.Text);
+        }
     }
 }
