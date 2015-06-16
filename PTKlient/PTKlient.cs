@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 using Activity_Monitor_Client;
+using NDde.Client;
 
 namespace PTKlient
 {
@@ -19,6 +20,7 @@ namespace PTKlient
         int serverPort;
         int serwerKomendPort = 1978;
         Bitmap obraz;
+        Browsers przegladarka = new Browsers();
         public PTKlient()
         {
             InitializeComponent();
@@ -63,6 +65,8 @@ namespace PTKlient
             serwer.Start();
             while (true)
             {
+                sendUDP(localIP + ":URL:" + przegladarka.GetBrowserFirefox());
+
                 try
                 {
                     TcpClient klientKomend = serwer.AcceptTcpClient();
@@ -141,6 +145,22 @@ namespace PTKlient
                 return;
             }
             sendUDP(localIP + ":STRING:" + textBoxWiadomosc.Text);
+        }
+        public string GetBrowserFirefox()
+        {
+            try
+            {
+                DdeClient dde = new DdeClient("Firefox", "WWW_GetWindowInfo");
+                dde.Connect();
+                string url = dde.Request("URL", int.MaxValue);
+                string[] text = url.Split(new string[] { "\",\"" }, StringSplitOptions.RemoveEmptyEntries);
+                dde.Disconnect();
+                return text[0].Substring(1);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
