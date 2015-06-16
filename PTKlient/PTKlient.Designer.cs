@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonPołącz = new System.Windows.Forms.Button();
             this.comboBoxLocalIP = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonWyslijWiadomosc = new System.Windows.Forms.Button();
             this.buttonRozlacz = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // buttonPołącz
@@ -123,6 +125,10 @@
             this.buttonRozlacz.UseVisualStyleBackColor = true;
             this.buttonRozlacz.Click += new System.EventHandler(this.buttonRozlacz_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // PTKlient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -157,6 +163,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonWyslijWiadomosc;
         private System.Windows.Forms.Button buttonRozlacz;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -15,6 +15,7 @@ namespace PTKlient
 {
     public partial class PTKlient : Form
     {
+        bool logowanie = true;
         string localIP;
         IPAddress serverIP;
         int serverPort;
@@ -45,6 +46,7 @@ namespace PTKlient
 
             backgroundWorker1.WorkerSupportsCancellation = true;
             backgroundWorker1.RunWorkerAsync();
+            timer1.Start();
         }
 
 
@@ -106,6 +108,20 @@ namespace PTKlient
                         }
                         sendUDP(localIP + ":PROC:" + wiadomoscudp);
                     }
+
+                    if (message.Contains("##PB##"))
+                    {
+                        string proces = message.Substring(6);
+                        while (proces.Contains("#"))
+                        {
+                            proces = proces.Substring(0, proces.Length - 1);
+                        }
+                        foreach (var process in Process.GetProcessesByName(proces))
+                        {
+                            process.Kill();
+                        }
+                        
+                    }
                     
                 }
                 catch { }
@@ -162,5 +178,15 @@ namespace PTKlient
                 return null;
             }
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!logowanie)
+                sendUDP(localIP + ":URL:" + przegladarka.GetBrowserFirefox());
+            else
+                logowanie = false;
+        }
+
+
     }
 }
